@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": {},
+  "properties": {
+    "enquirer": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "postcode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lastName",
+        "city",
+        "postcode",
+        "firstName",
+        "address"
+      ],
+      "type": "object"
+    },
+    "enquiryType": {
+      "properties": {
+        "additionalText": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "type",
+        "additionalText"
+      ],
+      "type": "object"
+    },
+    "optionalEnquiryTypes": {
+      "items": {
+        "properties": {
+          "additionalText": {
+            "type": "string"
+          },
+          "type": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "type",
+          "additionalText"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "recipients": {
+      "items": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "selected": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "selected",
+          "name"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "signature": {
+      "properties": {
+        "fileName": {
+          "type": "string"
+        },
+        "signatureDataURL": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "signatureDataURL",
+        "fileName"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "enquirer",
+    "enquiryType",
+    "recipients",
+    "optionalEnquiryTypes",
+    "signature"
+  ],
+  "type": "object"
+}

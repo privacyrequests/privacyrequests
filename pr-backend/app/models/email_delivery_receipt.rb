@@ -1,0 +1,2 @@
+class EmailDeliveryReceipt < ApplicationRecord
+end

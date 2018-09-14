@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sl:CreateCMSSignatureRequest xmlns:sl="http://www.buergerkarte.at/namespaces/securitylayer/1.2#" Structure="detached">
+   <sl:KeyboxIdentifier>SecureSignatureKeypair</sl:KeyboxIdentifier>
+   <sl:DataObject>
+      <sl:MetaInfo>
+         <sl:MimeType>application/pdf</sl:MimeType>
+      </sl:MetaInfo>
+      <sl:Content>
+         <sl:Base64Content><%= pdf_for_signing_b64 %></sl:Base64Content>
+      </sl:Content>
+   </sl:DataObject>
+</sl:CreateCMSSignatureRequest>
