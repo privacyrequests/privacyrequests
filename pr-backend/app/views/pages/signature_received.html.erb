@@ -1,0 +1,9 @@
+<html>
+<body>
+	<div style="display:flex;justify-content:center;align-items:center;width:100%;height:100%;text-align: center;">Die Antwort des Signatur-Servers wurde erfolgreich entgegengenommen. Dieses Fenster schließt sich in 5 Sekunden automatisch.</div>
+	<script type="text/javascript">
+		window.opener.postMessage({signature: '<%= signature %>'}, '<%= Rails.configuration.frontendUrl %>');
+		setTimeout(function () { window.close();}, 5000);
+	</script>
+</body>
+</html>

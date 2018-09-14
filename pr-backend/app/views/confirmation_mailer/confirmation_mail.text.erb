@@ -1,0 +1,16 @@
+Sehr geehrte/r Frau/Herr <%= @enquiry["enquirer"]["lastName"] %>,
+
+Ihr Antrag gemäß Art. 15 DSGVO auf Auskunft wurde erfolgreich an <%= @recipient["name"] %> (<%= @recipient["email"] %>) übermittelt. Anbei finden Sie eine Kopie Ihres digital-signierten Auskunftsersuchens. 
+
+Die Antwort des E-Mail Servers wurde anonymisiert protokolliert. Sie können diese Antwort, inklusive weiterer Informationen wie Datum und Empfänger, jederzeit mit Ihrer eindeutigen Passphrase über <%= @frontend_url %> abrufen. Diese Antwort des E-Mail Servers dient als Beweismittel für das Absenden der Email und den Empfang des Ersuchens. 
+
+Ihre eindeutige Passphrase lautet:
+
+<%= @passphrase %>
+
+Bewahren Sie bitte Ihre Passphrase zumindest bis nach der Beantwortung Ihrer Anfrage auf.
+
+
+Vielen Dank und mit freundlichen Grüßen
+
+PrivacyRequests.org
