@@ -1,0 +1,31 @@
+language: ruby
+rvm:
+- 2.4.1
+env:
+  global:
+  - JEKYLL_ENV=production
+  - secure: QZOjGlH7N+E3saUimYiLM2oxXXmD+QfmCEOqAq6nA7oTf52uqlrKY7mrTZi43JkVucf50exC9YSAlwP0wuDjBeJWYtPLUl8es7KTgnQoBmDP/acJBhnIZSYKRrzHOfe+CuV2ILUtjLiemTVcJ/sOmMauBnR+zqck7QcGPJQ4MgS0mdYCVqUx7JLxVNkO+wUV+e3w2Cy8iKM//Q8YJEs+ekH15tIGPGNUPsC3yz0szUACmHcAPWa/Tz1HNRbeURUQztKSy4t1Ri3SQbOnZsd10k81reHKIaRYidBs1lEmj973OMg6d7PUvANGz48yPqBrtOrrztnWRxuj6uTObIgH6xCdi/igA1D/bvXnUnKqKPf0KGAecH7sL9s3Bd++mndOh+/Sx87aW7YPrmv4nHrsgo3HLk7oTqJCVXPUUitOnq2yBP/IgzXvEOcya30mp7sn+stdpzQ9AxiW1Gi8GSXl0/TcLZk1Qbzvm4f++HlytNeLrhXTBaZM+U6ppLbDBmHWAOBFwvf6ohTDYV12VPavpxklqlzMIZzfaMA2pe1Ys5JESixSu+lhDZ8NBNvjjvpOhZP0G9UdbheU+tii/GSJfGdYUPOP/cOZwPL870+EVWidQKfmTBmH9m09pcd0IujRdy5IrrPJWNQVXRnurDbc29cAimH6eOB2t3tAjJeZ1OQ=
+  - secure: l6e1XqVu20QaHGugtfUq2uEB3TESBMeEfx5anYZht4LDRRHPeIEX5cqm/WGqiRVkPcnJ2DdNSDrMJQZz0E3LTAuILW4HzUpNbjsArH5DQnS+dmFIxSAM8Qd4kkBTykicgdoTkucb0KxHo7jyM9e/gcTX1mgRjnnA6c0ZsyPf8OUCSsMAThF0iwFG0km0+QqPlbkcCgZvwN6bquzRyDXV5mRblkMKAemn5Mnix8r/zgrNhbYwSJG1/SryDHWLexwuHHgQ3rKutgsAewhUXCAhQgOf7XiFEVkydqTER87lZ4HR8I2N7xMDXmufgm5jqLLpmt2M5X/fh5cU2ITK2aV59QRo1YRUVdTdxYCI4GLE2qY7tlj5WA3gzm3wGZclfPYZgDOEMt1QuEoP5RxPIlyXcdV/Mobc3cOTuIPJQIkR+2uaa8AZPU34D0BZKJ/UPLuS8CRZEYoQOK2aLvBZnQ9dQKnGIXLxy3sRNFil08uN2y+8ngwciABUSj8QyGxHjr7SI/COH333p649CvpLT4hIxAaF68WgOkFOfmB5RkhWNevfk/r6wIHtb8MUHPvdWXTpMBO74lySmDCczauaLMbGugeTvcRncP//goNG+b4ta//+ZhZaSE5xCt9JAiBu82AbiApDE1nwjjt1+1Zn6V7SnqmCJdjF9sk4nIWZaUcIzk4=
+  - secure: C6SFq16PDiXZNhCpdHyKKhaoVKr8fU5UJ9AVtoJdn2xjWJWQj+G4EZkJ7aLM/sMgrlxqsEBdN4JkQhozsNLZqM0T/THZf5V9E0XEQvEY6w31JLlinhTxAmssLfwwb4+yMuNU3wwh48eR+IttMspjJa44lx6o6IDdjzkstwk+s1gLYJbNKKo5O28FCih66gJwzTQXAgxddYQ829rIg/QVvbzUteLV7bUM1dbw0zmodNwaoJ6UQTWgvfxxQ1o/DmqrTHYi0e3kLgxKvj89UgLiHkrTY7H0FEa/oOLENoCYmnY7MRs8+qKqdtowH8Ug8RFVWezW7NzZ9YIwBRxxQWJebsBow8Bt8uBogDPGsK+6NUdSvP9qFbH9YeJTj99J4oXlNssYUs4t80981flB1HxbMOPkn5LjIyPRONQ/3WO6S7hY1Nc5tg9s44pE2foP6bJhOVOBvMEUMhRsheOolec9G/R9FWVeU0cG5bOj4+MK+PMfwOsJgJNyijfUnTTJ8xq7XtVxJzG4fYRflQBAMPw+J82c0qZw0IViVZH9/WOC4LYEZt9JDsVHmJqcBbDJDFgGy5NZYHPbi/BzIpmdO9Trr40yfVy5iWtj/0cEidxRLQHqMY6s46NFR3xFbhopppVCiE1kThYkf+ZsGWOzCXD7kEIPL1xcL2annXJHbhmVVL4=
+branches:
+  only:
+  - master
+sudo: false
+cache: bundler
+before_install:
+- cd pr-static-frontend
+script:
+- bundle exec jekyll build
+before_deploy:
+- openssl aes-256-cbc -K $encrypted_ff8345df554b_key -iv $encrypted_ff8345df554b_iv
+  -in ../deploy_rsa.enc -out /tmp/deploy_rsa -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/deploy_rsa
+- ssh-add /tmp/deploy_rsa
+- echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: rsync -r --quiet --delete-after _site/* $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_DIRECTORY
+  on:
+    branch: master
