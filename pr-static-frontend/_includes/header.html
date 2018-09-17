@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+            </button>
+			<a class="navbar-brand" href="/">
+				<i class="fas fa-paper-plane" aria-hidden="true"></i>
+				{{ site.title }}
+			</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="navigationbar">
+			<ul class="nav navbar-nav">
+				<li><a href="{{ site.app_url }}">Ersuchen erstellen</a></li>
+				<li><a href="{{ site.app_url }}/sendebericht">Sendebericht abfragen</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
