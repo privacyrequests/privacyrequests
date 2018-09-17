@@ -1,0 +1,27 @@
+<div class="container-fluid container-margin">
+	<div class="row">
+		<div class="col-sm-12 col-md-10 center-block">
+			<div class="full-panel">
+				<h2>Sendebericht abfragen</h2>
+				<div class="text">
+					Sie haben auf dieser Seite die Möglichkeit eine über diese Plattform verschickte Auskunftsanfrage abzurufen. Sie benötigen dafür Ihre individuelle Passphrase. Die Passphrase wird nach dem erfolgreichen E-Mail-Versand angezeigt bzw. Ihnen zusätzlich per E-Mail zugestellt. Geben Sie bitte Ihre Passphrase in das Feld ein.
+				</div>
+				<br/>
+				<div class="error" [hidden]="!hasError">Es konnte kein Eintrag zu dieser Passphrase gefunden werden.</div>
+				<div>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fas fa-key fa-fw"></i></span>
+						<input class="form-control" [(ngModel)]="passphrase" (ngModelChange)="changeHandler()" type="text" placeholder="Passphrase">
+					</div>
+				</div>
+				<br/>
+				<div class="email-receipt well" [hidden]="!showEmailDetails">
+					Sent-At: {{emailDeliveryReceipt.emailDetails.sent_at || ''}}<br/>
+					Delivered-To: {{emailDeliveryReceipt.emailDetails.recipient_email || ''}}<br/>
+					Server-Message: {{emailDeliveryReceipt.emailDetails.message || ''}}<br/>
+					Attachment-MD5: {{emailDeliveryReceipt.emailDetails.file_hash || ''}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+{
+  "EnquirerDetailsStep": [
+    {
+      "question": "Warum werden meine persönlichen Daten benötigt?",
+      "answer": "Damit der Empfänger Ihre persönlichen Daten zuordnen kann, müssen Sie diese in Ihrer Anfrage nennen. Der Empfänger muss sicherstellen, dass er Ihre Daten auch wirklich nur Ihnen übergibt. Zusätzlich haben Sie die Möglichkeit Ihre Anfrage in einem späteren Schritt herunter zu laden und diese dann per Post (z.B. per Einschreiben) zu versenden."
+    },
+    {
+      "question": "Warum muss ich meine E-Mail Adresse angeben?",
+      "answer": "Damit der Empfänger auf Ihre Anfrage antworten kann müssen Sie Ihre E-Mail Adresse angeben. Zusätzlich erhalten Sie eine Sendebestätigung an Ihre E-Mail Adresse. Ihre E-Mail Adresse wird weder gespeichert, an Dritte weitergegeben noch für andere Zwecke verwendet."
+    },
+    {
+      "question": "Werden meine persönlichen Daten gespeichert?",
+      "answer": "Ihre persönlichen Daten werden erst beim Herunterladen bzw. Versenden der Anfrage an den Server geschickt. Bis zu dem Zeitpunkt verbleiben Ihre persönliche Daten in Ihrem Browser und verlassen diesen auch nicht. Ihr Browser löscht Ihre Daten sobald Sie das Fenster schließen. Der Server verarbeitet Ihre Daten, jedoch werden diese ausschließlich für die Generierung der Anfrage benötigt und werden unter keinen Umständen gespeichert, noch an Dritte weitergegeben."
+    }
+  ],
+  "EnquiryDetailsStep": [
+    {
+      "question": "Welche Option sollte ich auswählen?",
+      "answer": "Wählen Sie die Option \"Alle Daten\" um ein Auskunftsbegehren über alle Ihre persönlichen Daten anzufragen.\nDie Option \"Bestimmte Datenanwendung\" limitiert Ihre persönlichen Daten auf eine gewisse Anwendung, wie z.B. eine Personalverwaltungs-Software.\nBei Auswahl der Option \"Bestimmtes Ereignis\" liefert Ihnen des Auskunftsgeber Daten die im Zusammenhang mit einem bestimmten Ereignis stehen, wie z.B. bei der Videoüberwachung.\nUm die Daten einer \"Automatisierten Entscheidungsfindung\" anzufragen wählen Sie bitte zusätzlich diese Option aus - z.B. fällt die Bonitätsprüfung bei der Eröffnung eines Kontos darunter.\nBei Auswahl der Option \"Dienstleister\" liefert Ihnen der Auskunftsgeber zusätzlich die Information an welche Drittanbieter Ihre Daten übermittelt werden."
+    }
+  ],
+  "RecipientSelectionStep": [
+    {
+      "question": "Warum sollte ich nicht mehr als einen Empfänger auswählen?",
+      "answer": ""
+    }
+  ],
+  "IdentityProofStep": [
+    {
+      "question": "Was ist der Unterschied zwischen Handy-Signatur und der Ausweiskopie?",
+      "answer": ""
+    }
+  ],
+  "DownloadOrSendDocumentStep": [
+    {
+      "question": "Wie funktioniert der Versand per E-Mail?",
+      "answer": ""
+    }
+  ]
+}

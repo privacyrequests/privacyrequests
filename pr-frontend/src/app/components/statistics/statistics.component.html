@@ -1,0 +1,12 @@
+<div class="container-fluid container-margin container-padding">
+	<div class="row">
+		<div class="col-sm-12 col-md-10 center-block">
+			<div class="full-panel">
+				<h2>Statistiken</h2>
+				<chart [type]="'line'" [data]="liveData" [options]="getChartOptions('Live versandte Auskunftsersuchen')"></chart>
+				<br/>
+				<chart [type]="'bar'" [data]="monthlyData" [options]="getChartOptions('Versandte Auskunftsersuchen pro Monat')"></chart>
+			</div>
+		</div>
+	</div>
+</div>

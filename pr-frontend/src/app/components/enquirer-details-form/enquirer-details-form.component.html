@@ -1,0 +1,62 @@
+<form class="form-horizontal" role="form" #enquirerForm="ngForm">
+  <fieldset>
+    <div class="form-group" [ngClass]="{'has-error': firstName.errors && (firstName.dirty || firstName.touched)}">
+      <label for="textinput" class="col-sm-4 control-label">Vorname</label>
+      <div class="col-sm-8">
+        <input [(ngModel)]="enquirer.firstName" (ngModelChange)="changeHandler()" name="firstName" type="text" class="form-control" placeholder="Max" required #firstName="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': lastName.errors && (lastName.dirty || lastName.touched)}">
+      <label for="textinput" class="col-sm-4 control-label">Nachname</label>
+      <div class="col-sm-8">
+        <input [(ngModel)]="enquirer.lastName" (ngModelChange)="changeHandler()" name="lastName" type="text" class="form-control" id="lastName" placeholder="Mustermann" required #lastName="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': email.errors && (email.dirty || email.touched)}">
+      <label for="textinput" class="col-sm-4 control-label">E-Mail</label>
+      <div class="col-sm-8">
+        <input [(ngModel)]="enquirer.email" (ngModelChange)="changeHandler()" name="email" type="email" class="form-control" id="email" placeholder="max@mustermann.at" required pattern="^.{1,}@.{2,}\..{2,}" #email="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': address.errors && (address.dirty || address.touched)}">
+      <label for="textinput" class="col-sm-4 control-label">Adresse</label>
+      <div class="col-sm-8">
+        <input [(ngModel)]="enquirer.address" (ngModelChange)="changeHandler()" name="address" type="text" class="form-control" id="address" placeholder="Musterstraße 1" required #address="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': postcode.errors && (postcode.dirty || postcode.touched)}">
+      <label for="textinput" class="col-sm-4 control-label">PLZ</label>
+      <div class="col-sm-8">
+        <input [(ngModel)]="enquirer.postcode" (ngModelChange)="changeHandler()" name="postcode" type="text" class="form-control" id="postcode" placeholder="1234" required #postcode="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': city.errors && (city.dirty || city.touched)}">
+      <label for="textinput" class="col-sm-4 control-label">Ort</label>
+      <div class="col-sm-8">
+        <input [(ngModel)]="enquirer.city" (ngModelChange)="changeHandler()" name="city" type="text" class="form-control" id="city" placeholder="Musterort" required #city="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': country.errors && (country.dirty || country.touched)}">
+      <label for="textinput" class="col-sm-4 control-label">Land</label>
+      <div class="col-sm-8">
+        <input [(ngModel)]="enquirer.country" (ngModelChange)="changeHandler()" name="country" type="text" class="form-control" id="country" placeholder="Österreich" value="Österreich" [disabled]="true" required #country="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': legal.errors && (legal.dirty || legal.touched)}">
+     <div class="col-sm-4 control-label hidden-xs">
+      <input [(ngModel)]="legalCheckbox" id="legalCheckbox" type="checkbox" class="form-check-input" name="legalCheckbox" [checked]="false" required #legal="ngModel">
+    </div>
+    <div class="col-sm-8">
+      <label for="legalCheckbox" class="clear-label show-error" role="button">Ich akzeptiere die <a target="_blank" href="{{environment.frontendUrl}}/datenschutz">Datenschutzerklärung</a>.</label>
+    </div>
+  </div>
+
+</fieldset>
+</form>

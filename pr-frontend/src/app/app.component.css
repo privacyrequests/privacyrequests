@@ -1,0 +1,13 @@
+.navbar {
+	border-radius: 0;
+	margin-bottom: 0;
+}
+
+.footer {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.footer a {
+	padding: 10px;
+}

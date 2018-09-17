@@ -1,0 +1,9 @@
+/* Fix for ng-bootstrap */
+@import '~ng-bootstrap-to-bootstrap-3/dist/ng-bootstrap-to-bootstrap-3.min.css'; 
+
+body {
+	font-size: 12pt;
+	color: #2c3e50;
+	margin:0;
+	padding:0;
+}

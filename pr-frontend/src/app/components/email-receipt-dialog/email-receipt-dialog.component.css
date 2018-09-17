@@ -1,0 +1,10 @@
+.email-receipt {
+	margin-top: 10px;
+	font-family: Consolas, monaco, monospace;
+}
+
+.error {
+	font-size: 80%;
+	color: #e74c3c;
+	margin-top: 10px;
+}

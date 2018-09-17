@@ -1,0 +1,69 @@
+<div class="alert alert-dismissible alert-warning" [hidden]="!showAlert">
+  <button type="button" class="close" (click)="showAlert=false;stayHidden=true;" data-dismiss="alert">&times;</button>
+  <h4>Achtung!</h4>
+  <p>Sie haben mehrere Empfänger ausgewählt. Leider unterstützt die Handy-Signatur nur ein Dokument pro Signaturvorgang. Sie haben deshalb im nächsten Schritt nur die Möglichkeit das Dokument manuell zu unterschreiben.</p>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Empfänger auswählen</h3>
+	</div>
+	<div class="panel-body">
+		<div [ngClass]="{'alert alert-danger': showError}">Wählen Sie aus an welche Empfänger Sie Ihr Auskunftsersuchen senden möchten.</div>
+		<br>
+		<div class="input-group">
+			<input class="form-control" type="text" placeholder="Suche Empfänger ..." [(ngModel)]="recipientFilter.name">
+			<span class="input-group-addon" (click)="recipientFilter.name=''" role="button">
+			<i class="fa fa-fw"
+			[ngClass]="recipientFilter.name ? 'fa-times' : 'fa-search'"
+			></i></span>
+		</div>
+		<br>
+		<div class="pre-scrollable">
+			<div class="list-group">				
+				<a *ngFor="let recipient of recipients | filterBy: recipientFilter" (click)="selectRecipient(recipient)" [ngClass]="{'active':recipient.selected}" class="list-group-item">{{recipient.name}}</a>			
+			</div>
+		</div>
+		<br>
+		<div class="pull-right" role="button" (click)="isAddRecipientHidden=!isAddRecipientHidden">Manuell hinzufügen 
+		<i class="fa" 
+		[ngClass]="isAddRecipientHidden ? 'fa-caret-up' : 'fa-caret-down'"
+		aria-hidden="true"></i></div>
+		<br>
+		<form class="form-horizontal" role="form" #additionalRecipientForm="ngForm">
+		<div [hidden]="isAddRecipientHidden">
+			<div class="form-group" [ngClass]="{'has-error': recipientName.errors && (recipientName.dirty || recipientName.touched)}">
+				<label class="control-label" for="company">Empfängername</label>
+				<input class="form-control" [(ngModel)]="addedRecipient.name" name="recipientName" type="text" id="company" placeholder="Musterfirma GmbH" required #recipientName="ngModel">
+			</div>
+
+			<div class="form-group" [ngClass]="{'has-error': email.errors && (email.dirty || email.touched)}">
+			<label class="control-label" for="email">E-Mail</label>
+			<input class="form-control" [(ngModel)]="addedRecipient.email" type="text" name="email" id="email" placeholder="muster@firma.at" email required #email="ngModel">
+			</div>
+
+			<div class="form-group" [ngClass]="{'has-error': address.errors && (address.dirty || address.touched)}">
+			<label class="control-label" for="address">Adresse</label>
+			<input class="form-control" [(ngModel)]="addedRecipient.address" type="text" name="address" id="address" placeholder="Hauptstraße 2" required #address="ngModel">
+			</div>
+
+			<div class="form-group" [ngClass]="{'has-error': postcode.errors && (postcode.dirty || postcode.touched)}">
+			<label class="control-label" for="postcode">PLZ</label>
+			<input class="form-control" [(ngModel)]="addedRecipient.postcode" type="text" name="postcode" id="postcode" placeholder="1234" required #postcode="ngModel">
+			</div>
+
+			<div class="form-group" [ngClass]="{'has-error': city.errors && (city.dirty || city.touched)}">
+			<label class="control-label" for="city">Ort</label>
+			<input class="form-control" [(ngModel)]="addedRecipient.city" type="text" id="city" name="city" placeholder="Musterort" required #city="ngModel">
+			</div>
+
+			<div class="form-group" [ngClass]="{'has-error': country.errors && (country.dirty || country.touched)}">
+			<label class="control-label" for="country">Land</label>
+			<input class="form-control" [(ngModel)]="addedRecipient.country" type="text" id="country" name="country" [disabled]="true" placeholder="Österreich" value="Österreich" required #country="ngModel">
+			</div>
+
+			<br>
+			<button class="btn btn-primary btn-sm pull-right" (click)="addRecipient()">Hinzufügen</button>
+		</div>
+		</form>
+	</div>
+</div>

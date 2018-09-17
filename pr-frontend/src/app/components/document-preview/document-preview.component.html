@@ -1,0 +1,47 @@
+  <div class="invoice hidden-xs">
+    <div class="row">
+      <strong>{{enquirer.firstName || "Max"}} {{enquirer.lastName || "Mustermann"}}</strong>
+      <span class="pull-right">{{enquirer.city || "Musterort"}}, am {{today | date:'dd.MM.yyyy'}}</span><br>
+      {{enquirer.address || "Hauptstraße 1"}}<br>
+      {{enquirer.postcode || "1234"}} {{enquirer.city || "Musterort"}}<br>
+      {{enquirer.country || "Österreich"}}
+    </div>
+    <div class="row">
+      <br><br>
+      <p style="display: inline-block;">
+        <strong>{{recipients[index]?.name || "Musterfirma GmbH"}}</strong><br>
+        {{recipients[index]?.address || "Hauptstraße 2"}}<br>
+        <i class="fas fa-chevron-left chevron-left" role="button" *ngIf="index>0" (click)="previousRecipient()" aria-hidden="true"></i>
+        {{recipients[index]?.postcode || "1234"}} {{recipients[index]?.city || "Musterort"}}<br>
+        {{recipients[index]?.country || "Österreich"}}
+      </p>
+      <i class="fas fa-chevron-right chevron-right" role="button" *ngIf="index<recipients.length-1" (click)="nextRecipient()" aria-hidden="true"></i>
+    </div>
+    <div class="row">
+      <h3>Antrag gemäß Art. 15 DSGVO auf Auskunft</h3>
+    </div>
+    <br>
+    <div class="row">
+      <p>Sehr geehrte Damen und Herren,</p>
+      <p>hiermit stelle ich ({{enquirer.firstName || "Max"}} {{enquirer.lastName || "Mustermann"}}) gemäß Art. 15 Datenschutz-Grundverordnung (Verordnung (EU) 2016/679) Antrag auf Auskunft.</p>
+
+      <p *ngIf="enquiryType.type==EnquiryTypeEnum.AllData">Ich ersuche um Auskunft über alle zu meiner Person gespeicherten Daten.</p>
+      <p *ngIf="enquiryType.type==EnquiryTypeEnum.SpecificApplication">Ich ersuche um Auskunft über meine Daten aus einer bestimmten Datenanwendung, nämlich: <i>{{enquiryType.additionalText}}</i></p>
+      <p *ngIf="enquiryType.type==EnquiryTypeEnum.SpecificEvent">Ich ersuche um Auskunft über meine Daten im Zusammenhang mit einem bestimmten Ereignis, nämlich: <i>{{enquiryType.additionalText}}</i></p>
+
+      <p *ngIf="isToggled(OptionalEnquiryTypeEnum.AutomatedDecisionMaking)">Ich ersuche um Auskunft über den logischen Ablauf einer automatisierten Entscheidungsfindung einschließlich Profiling (Artikel 22 Absätze 1 und 4 DSGVO): <i>{{getOptionalEnquiryType(OptionalEnquiryTypeEnum.AutomatedDecisionMaking).additionalText}}</i></p>
+      <p *ngIf="isToggled(OptionalEnquiryTypeEnum.ServiceProvider)">Bitte erteilen Sie mir auch Auskunft über Ihre Dienstleister.</p>
+
+      <p *ngIf="signatureURL">Als Beweis meiner Identität liegt eine Kopie eines amtlichen Lichtbildausweises bei.</p>
+      <p *ngIf="isDigitallySigned">Als Beweis meiner Identität ist dieses Dokument digital signiert.</p>
+
+      <p>Ein Auszug des Art. 15 DSGVO über das Auskunftsrecht befindet sich am Ende dieses Dokuments.</p>
+    </div>
+    <br>
+    <div class="row">
+      <p>Vielen Dank und mit freundlichen Grüßen,</p>
+      <br>
+      <div *ngIf="signatureURL" width="240" height="80" class="signature" [ngStyle]="{'background-image': 'url(' + signatureURL + ')'}"></div>
+      <p>{{enquirer.firstName || "Max"}} {{enquirer.lastName || "Mustermann"}}</p>
+    </div>
+  </div>

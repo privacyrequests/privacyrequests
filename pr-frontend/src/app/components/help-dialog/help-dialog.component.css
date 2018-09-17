@@ -1,0 +1,10 @@
+.faq-question {
+	font-weight: bold;
+}
+
+.faq-answer {
+	padding: 5px;
+	padding-bottom: 15px;
+	text-align: justify;
+	white-space: pre-line;
+}

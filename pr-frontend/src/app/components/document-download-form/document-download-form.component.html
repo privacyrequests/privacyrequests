@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Dokument herunterladen</h3>
+  </div>
+  <div class="panel-body" [hidden]="isDigitallySigned">
+  	<div>
+  		Laden Sie das Dokument als PDF oder Word-Datei herunter und versenden Sie es selbst per E-Mail oder Post.
+  	</div>
+  	<br>
+    <ul class="fa-ul">
+      <li><i class="fa-li fa" [ngClass]="idUploaded ? 'fa-check' : 'fa-times'"></i>Ausweiskopie angehängt</li>
+      <li><i class="fa-li fa" [ngClass]="signed ? 'fa-check' : 'fa-times'"></i>Unterschrift</li>
+    </ul>
+    <br>
+    <button type="button" class="btn btn-primary btn-sm half-width word-blue" (click)="download(DocumentType.WordDocument)"><i class="far fa-file-word fa-lg fa-fw"></i> Word</button>
+    <button type="button" class="btn btn-primary btn-sm half-width pdf-red" (click)="download(DocumentType.PDFDocument)"><i class="far fa-file-pdf fa-lg fa-fw"></i> PDF</button>
+  </div>
+
+  <div class="panel-body" [hidden]="!isDigitallySigned">
+    <div>
+      Laden Sie das Dokument als digital signierte PDF-Datei herunter und versenden Sie es selbst per E-Mail.
+    </div>
+    <br>
+    <ul class="fa-ul">
+      <li><i class="fa-li fas fa-check"></i>Dokument digital signiert</li>
+    </ul>
+    <br>
+    <button type="button" class="btn btn-primary btn-sm btn-block pdf-red" (click)="download(DocumentType.PDFDocument)"><i class="far fa-file-pdf fa-lg fa-fw"></i> PDF</button>
+  </div>
+</div>

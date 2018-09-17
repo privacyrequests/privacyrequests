@@ -1,0 +1,25 @@
+<div class="container-fluid container-padding container-margin">
+	<div class="row">
+		<div class="col-xs-12 col-sm-4 margin-bottom-30">
+			<div class="header-title">
+				<h1 class="inline-block">{{stepService.getStepText()}}</h1>
+				<h1 class="inline-block"><small>Schritt {{stepService.getCurrentStep()}} von {{stepService.getMaxStep()}}</small></h1>
+			</div>
+
+			<enquirer-details-form [hidden]="stepService.getCurrentStep() != Step.EnquirerDetailsStep"></enquirer-details-form>
+			<enquiry-details-form [hidden]="stepService.getCurrentStep() != Step.EnquiryDetailsStep"></enquiry-details-form>
+			<recipient-selection-form [hidden]="stepService.getCurrentStep() != Step.RecipientSelectionStep"></recipient-selection-form>
+			<identity-proof-form [hidden]="stepService.getCurrentStep() != Step.IdentityProofStep"></identity-proof-form>
+			<download-send-form [hidden]="stepService.getCurrentStep() != Step.DownloadOrSendDocumentStep"></download-send-form>
+
+			<span (click)="stepService.nextStep()" *ngIf="stepService.getCurrentStep() != stepService.getMaxStep()" class="btn btn-default pull-right"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+
+			<span (click)="openHelpDialog()" class="btn btn-default pull-right margin-right-5"><i class="fas fa-question-circle" aria-hidden="true"></i></span>
+
+			<span (click)="stepService.previousStep()" *ngIf="stepService.getCurrentStep() != stepService.getMinStep()" class="btn btn-default pull-left"><i class="fas fa-arrow-left" aria-hidden="true"></i></span>
+		</div>
+		<div class="col-xs-12 col-sm-8">
+			<document-preview></document-preview>
+		</div>
+	</div>
+</div>
