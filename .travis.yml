@@ -1,0 +1,62 @@
+before_deploy:
+- openssl aes-256-cbc -K $encrypted_879e310697e1_key -iv $encrypted_879e310697e1_iv
+  -in ../deployment/deploy_rsa.enc -out ../deployment/deploy_rsa -d
+- eval "$(ssh-agent -s)"
+- chmod 600 ../deployment/deploy_rsa
+- ssh-add ../deployment/deploy_rsa
+- echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+jobs:
+  include:
+  - stage: static-frontend
+    language: ruby
+    rvm: 2.4.1
+    env: JEKYLL_ENV=production
+    sudo: false
+    skip_cleanup: true
+    before_install:
+    - cd pr-static-frontend
+    script:
+    - bundle exec jekyll build
+    deploy:
+      provider: script
+      skip_cleanup: true
+      script: mv ../deployment/.htaccess _site/.htaccess && rsync -r --quiet --delete-after _site/ $DEPLOY_USER@$DEPLOY_HOST:/home/$DEPLOY_USER/html/
+      on:
+        branch: master
+  - stage: frontend
+    language: node_js
+    node_js: 8.11.4
+    sudo: false
+    skip_cleanup: true
+    before_install:
+    - cd pr-frontend
+    before_script:
+    - npm install -g @angular/cli
+    script:
+    - ng build --prod
+    deploy:
+      provider: script
+      skip_cleanup: true
+      script: rsync -r --quiet --delete-after dist/ $DEPLOY_USER@$DEPLOY_HOST:/var/www/virtual/$DEPLOY_USER/app.privacyrequests.org
+      on:
+        branch: master
+  - stage: backend
+    language: ruby
+    rvm: 2.4.1
+    sudo: false
+    env: RAILS_ENV=production
+    skip_cleanup: true
+    before_install:
+    - cd pr-backend
+    script:
+    - true # do nothing 
+    deploy:
+      provider: script
+      skip_cleanup: true
+      script: bash ../deployment/deploy_pr-backend.sh
+      on:
+        branch: master
+env:
+  global:
+  - secure: BtrFyAxHYRt9CYBtTd/4k48cAWfsSHz+lq1f4s8qfsTxg0wg3heE7w7GuTAAmVZmfo3kRwuZf+9CLLbZIaFSY1AEtYCdaf1Q9XDYiTxow9BVQlvZFvs5B8M78OGms/Trar7og9knuc3PFPIjwPCi2B+hnkgRRn6Y+v+CKzMaNQDARnHUyHj1RqsdnRmwUNpM16XBI3hGvEp5daJa/yAj56UfBYXq9ETthRh9OJeoBmfFpxu0kkRS4X/LhGdfywAYsxUbtQRkunHFo1F3auDuapluLik8mKEX5cM9OxRgl96MqLZ19JIhJWi9M52OYLCMIzgfm/7gJLG7XKwAyqLX6fQHh8o2OZcse1QwWI/aHh0eNqfOkuYAqk/QezRsN57moMI0NjuI1iWTdI/fisF7VPMxSjAIvGt5w5XWHZ6EDrv3ZvRyXehc+GQMnQfNvavHnv+wHIy07IjO6yinY0vs+j41nHJeufiefLrWJ2SkXqDiyjLHmMnMqgeY9bjywJvMyvIdQUJRvu/PD6FTT+RtLHa2rEpJdncOs00lRayi7WerpghZieX+QHn5Db5ybDBFC4glrjlLfzupyxd25TDEPO49FHGeczYM8yDIEjJoFLseJX7UEkJogXdOiVlziShlAZtXq0f2xajWp6QqcwXW+A9GkK2qVZmvgiQv39anAtw=
+  - secure: D5O8Nzpxhh0ZLJ4Mxya/MBgVeinbevTscO1h0p6Ss3H2mD2vDhDnmRo3EhpriSU8xHGNjvT+dLlTwTMBVzYChBIVlBHdfOlvKuJOhXRo/ErtNwS0Sug1T0a42O/yzApa+f7BC3Z8pG9OCG2GsDH6sMfoKdbSK/wD503Wu6pVkzfJl0KgpSwqFwskh6ekZysa6NtO4t3RO8yYAib93U6reoCdb/6/Uhg2qtYXsSBuzoOgXtWbocES0bOzghanJ8ZaLPqG3lGnaIPKyxM3UjhL+D3NykYCTtky9JKeRfH75P9EKz5rjtGOlx4B2XcWdo8R0wQ2MzrmQcvoVOpuir3XK/zP9HjF6Ul4aJG75rCeBbjagk3H1jyHCrY+n9iG5AkfVVFogZyVoYaVgPfYZ0H/v/KEQfUvCHiMJCkYgm3kki2gdYQORTVhEWRNqaG5WBI3QmdyrCut42RHI7TcAuRb9MZDHMpInNHUjnqueXCCvTW8JbxmMQE8uNcTy3UtK7fmbD/yGGlLp9Ani0XYl3VCc0HGW3ug4QFo6E1DZwzge9u1yJSO1cb3phU8FVk5iHHxSEoc3mqH++kStnl5Dvy6kFQ9OFlBzwGL5UrLRwdxuVePr9Bn+79Jz1jsoGGxftf0nbwuNKQJtHQanxPalV5iAoNEczaXtnYuf+Tl2ZtvsgI=
