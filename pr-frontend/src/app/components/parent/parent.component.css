@@ -1,0 +1,56 @@
+.navbar {
+	border-radius: 0;
+	margin-bottom: 0;
+}
+
+.footer {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.footer a {
+	padding: 10px;
+}
+
+.margin-right-5 {
+	margin-right: 5px;
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.half-width {
+	width: 49%;
+}
+
+.header-title {
+	text-align: right;
+	margin-bottom: 20px;
+}
+
+.text-align-left {
+	text-align: left;
+}
+
+.header-title h1 {
+	font-size: 25px;
+	margin-top: 0px;
+}
+
+.margin-bottom-30 {
+	margin-bottom: 30px;
+}
+
+.container-margin {
+	margin-top: 80px;
+}
+
+.container-padding {
+	padding-left: 6%;
+	padding-right: 6%;
+}
+
+.inline-block {
+	display: inline-block;
+}

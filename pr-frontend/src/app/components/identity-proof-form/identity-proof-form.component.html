@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Handy-Signatur als Identitätsnachweis</h3>
+  </div>
+  <div class="panel-body">
+   <div>Falls Sie ein Handy-Signatur-Konto besitzen, können Sie Ihre Anfrage elektronisch signieren. Die elektronische Signatur dient als Identitätsnachweis gemäß Verordnung (EU) Nr. 910/2014. Wählen Sie diese Methode falls Sie Ihr Auskunftsersuchen per E-Mail versenden wollen.</div>
+   <br>
+   <button type="button" class="btn btn-primary btn-sm btn-block" [disabled]="tooManyRecipients" (click)="handleDigitalSignature()"><i class="fas fa-file-signature" aria-hidden="true"></i> &nbsp;Jetzt signieren</button>
+ </div>
+</div>
+
+<hr class="hr-text" data-content="oder">
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Ausweiskopie als Identitätsnachweis</h3>
+  </div>
+  <div class="panel-body">
+  	<div>
+  		Wählen Sie eine Kopie eines amtlichen Lichtbildausweises (z.B. Reisepass oder Personalausweis) aus und fügen Sie es dem Dokument an. Wählen Sie diese Methode falls Sie kein Handy-Signatur Konto besitzen oder Ihr Auskunftsersuchen per Post versenden möchten.
+  	</div>
+  	<br>
+    <button type="button" (click)="fileInput.click()" class="btn btn-primary btn-sm btn-block"><i class="fas fa-upload fa-lg"></i> &nbsp;Kopie auswählen</button>
+    <input style="display: none;" (change)="handleFileSelect($event)" type="file" #fileInput ng2FileSelect [accept]="ALLOWED_MIME_TYPES.toString()" [uploader]="uploader" />
+  </div>
+</div>

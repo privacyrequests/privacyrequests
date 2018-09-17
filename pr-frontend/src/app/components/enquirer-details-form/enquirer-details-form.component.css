@@ -1,0 +1,10 @@
+.clear-label {
+	display: inline;
+    max-width: none;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+.has-error label.show-error {
+	border-bottom: 2px solid red;
+}

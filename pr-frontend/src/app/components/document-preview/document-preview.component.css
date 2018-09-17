@@ -1,0 +1,45 @@
+.invoice {
+ padding: 50px 100px 50px 100px;
+ background-color: #FFFEFF;
+ overflow: hidden;
+ /* position: fixed; */
+ margin-bottom: 16px;
+ box-shadow: 0px 1px 2px 1px #D3D2D3;
+ border-radius: 2px;
+
+ height: -webkit-calc(100% - 100px);
+ height: -moz-calc(100% - 100px);
+ height: -o-calc(100% - 100px);
+ height: calc(100% - 100px);
+
+ min-height: -webkit-calc(100vh - 100px);
+ min-height: -moz-calc(100vh - 100px);
+ min-height: -o-calc(100vh - 100px);
+ min-height: calc(100vh - 100px);
+}
+
+.document-type {
+  text-align: right;
+  color: #444;
+}
+
+.chevron-left {
+  position: absolute;
+  left: 50px;
+  font-size: 25px;
+}
+
+.chevron-right {
+  position: relative;
+  font-size: 25px;
+  bottom: 37px;
+  left: 5px;
+}
+
+.signature {
+	width: 240px;
+  height: 80px;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

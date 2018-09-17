@@ -1,0 +1,35 @@
+ <div class="modal-content">
+ 	<div class="modal-header">
+ 		<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cancel')"><span aria-hidden="true">&times;</span></button>
+ 		<h4 class="modal-title">E-Mail Vorschau</h4>
+ 	</div>
+ 	<div class="modal-body">
+ 		<div class="form-group">
+ 			<label for="recipient">Empfänger</label>
+ 			<input type="text" class="form-control" id="recipient" aria-describedby="recipient" value="{{recipientsText}}" disabled="disabled">
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="sender">Sender</label>
+ 			<input type="text" class="form-control" id="sender" aria-describedby="sender" value="{{enquiry.enquirer.email}}" disabled="disabled">
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="subject">Betreff</label>
+ 			<input type="text" class="form-control" [(ngModel)]="email.subject" id="subject" aria-describedby="subject">
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="text">Text</label>
+ 			<textarea class="form-control" [(ngModel)]="email.body" id="text"></textarea>
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="attachment">Anhang</label>
+ 			<div class="input-group input-group-sm">
+ 				<span class="input-group-addon"><i class="fas fa-paperclip fa-fw"></i></span>
+ 				<input type="text" class="form-control auto-width" [(ngModel)]="email.attachmentName">
+ 				<span class="input-group-addon display-table">.pdf</span>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	<div class="modal-footer">
+ 		<button type="button" class="btn btn-success" (click)="saveEmail()"><i class="fas fa-floppy fa-lg fa-fw"></i> E-Mail speichern</button>
+ 		<button type="button" class="btn btn-default" (click)="activeModal.dismiss('Cancel')">Abbrechen</button> 	</div>
+ 	</div>

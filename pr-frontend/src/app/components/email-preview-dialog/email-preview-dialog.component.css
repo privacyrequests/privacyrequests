@@ -1,0 +1,15 @@
+textarea {
+	resize: vertical;
+}
+
+textarea.form-control {
+	height: 215px;
+}
+
+.auto-width {
+	width: auto;
+}
+
+.display-table {
+	display: table;
+}

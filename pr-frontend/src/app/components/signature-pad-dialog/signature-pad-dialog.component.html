@@ -1,0 +1,13 @@
+ <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cancel')"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title">Dokument unterschreiben</h4>
+    </div>
+    <div class="modal-body signature">
+      <signature-pad [options]="signaturePadOptions" (onBeginEvent)="startSignature()">asdf</signature-pad>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="clearSignature()">Löschen</button>
+      <button type="button" class="btn btn-primary" (click)="signDocument()">Unterschreiben</button>
+    </div>
+  </div>

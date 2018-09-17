@@ -1,0 +1,16 @@
+.form-group {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: -5px;
+} 
+
+.list-group {
+	margin-bottom: 0px;
+	cursor: pointer;
+	max-height: 302px;
+	overflow-y: scroll;
+}
+
+.control-label {
+	margin-top: 15px;
+}

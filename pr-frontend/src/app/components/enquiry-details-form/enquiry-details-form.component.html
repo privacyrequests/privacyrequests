@@ -1,0 +1,70 @@
+<form class="form-horizontal" role="form" #enquiryForm="ngForm">
+<fieldset>
+<div class="panel panel-default">
+  <div class="panel-heading" role="button" (click)="changeEnquiryType(EnquiryTypeEnum.AllData)">
+    <h3 class="panel-title">Alle Daten <i class="far fa-lg fa-pull-right fa-fw"
+    [ngClass]="enquiryType.type==EnquiryTypeEnum.AllData ? 'fa-check-square' : 'fa-square'"
+    aria-hidden="true"></i></h3>
+  </div>
+  <div class="panel-body">
+    Ich ersuche um Auskunft über alle zu meiner Person gespeicherten Daten.
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading" role="button" (click)="changeEnquiryType(EnquiryTypeEnum.SpecificApplication)">
+    <h3 class="panel-title">Bestimmte Datenanwendung <i class="far fa-lg fa-pull-right fa-fw"
+    [ngClass]="enquiryType.type==EnquiryTypeEnum.SpecificApplication ? 'fa-check-square' : 'fa-square'"
+    aria-hidden="true"></i></h3>
+  </div>
+  <div class="panel-body">
+Ich ersuche um Auskunft über meine Daten aus einer bestimmten
+Datenanwendung.
+<div class="form-group" *ngIf="enquiryType.type==EnquiryTypeEnum.SpecificApplication" [ngClass]="{'has-error': specificApplication.errors && (specificApplication.dirty || specificApplication.touched)}">
+<textarea [(ngModel)]="enquiryType.additionalText" (ngModelChange)="updateDocument()" class="form-control margin-top-10" id="specificApplication" name="specificApplication" placeholder="z.B. Personalverwaltung" [required]="enquiryType.type==EnquiryTypeEnum.SpecificApplication" #specificApplication="ngModel"></textarea></div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading" role="button" (click)="changeEnquiryType(EnquiryTypeEnum.SpecificEvent)">
+    <h3 class="panel-title">Bestimmtes Ereignis <i class="far fa-lg fa-pull-right fa-fw"
+    [ngClass]="enquiryType.type==EnquiryTypeEnum.SpecificEvent ? 'fa-check-square' : 'fa-square'"
+    aria-hidden="true"></i></h3>
+  </div>
+  <div class="panel-body">
+    Ich ersuche um Auskunft über meine Daten im Zusammenhang mit einem
+bestimmten Ereignis.
+<div class="form-group" *ngIf="enquiryType.type==EnquiryTypeEnum.SpecificEvent" [ngClass]="{'has-error': specificEvent.errors && (specificEvent.dirty || specificEvent.touched)}">
+<textarea [(ngModel)]="enquiryType.additionalText" (ngModelChange)="updateDocument()" class="form-control margin-top-10" id="specificEvent" name="specificEvent" placeholder="z.B. Newsletter-Anmeldung" [required]="enquiryType.type==EnquiryTypeEnum.SpecificEvent" #specificEvent="ngModel"></textarea></div>
+  </div>
+</div>
+
+<hr class="hr-text" data-content="Optional">
+
+<div class="panel panel-default">
+  <div class="panel-heading" role="button" (click)="toggleOptionalEnquiryTypeEnum(OptionalEnquiryTypeEnum.AutomatedDecisionMaking)">
+    <h3 class="panel-title">Automatisierte Entscheidungsfindung <i class="far fa-lg fa-pull-right fa-fw"
+    [ngClass]="isToggled(OptionalEnquiryTypeEnum.AutomatedDecisionMaking) ? 'fa-check-square' : 'fa-square'"
+    aria-hidden="true"></i></h3>
+  </div>
+  <div class="panel-body" *ngIf="isToggled(OptionalEnquiryTypeEnum.AutomatedDecisionMaking)">
+    Ich ersuche um Auskunft über den logischen Ablauf einer automatisierten Entscheidungsfindung (§ 49 Abs. 3 DSG 2000).
+    <div class="form-group" [ngClass]="{'has-error': automatedDecisionMaking.errors && (automatedDecisionMaking.dirty || automatedDecisionMaking.touched)}">
+      <!-- Workaround for ngModel until two way binding supports elvis operator -->
+      <textarea [(ngModel)]="getOptionalEnquiryType(OptionalEnquiryTypeEnum.AutomatedDecisionMaking) && getOptionalEnquiryType(OptionalEnquiryTypeEnum.AutomatedDecisionMaking).additionalText" (ngModelChange)="updateDocument()" class="form-control margin-top-10" id="automatedDecisionMaking" name="automatedDecisionMaking" placeholder="z.B. Bonitätsprüfung" [required]="isToggled(OptionalEnquiryTypeEnum.AutomatedDecisionMaking)" #automatedDecisionMaking="ngModel"></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading" role="button" (click)="toggleOptionalEnquiryTypeEnum(OptionalEnquiryTypeEnum.ServiceProvider)">
+    <h3 class="panel-title">Dienstleister <i class="far fa-lg fa-pull-right fa-fw"
+    [ngClass]="isToggled(OptionalEnquiryTypeEnum.ServiceProvider) ? 'fa-check-square' : 'fa-square'"
+    aria-hidden="true"></i></h3>
+  </div>
+  <div class="panel-body" [hidden]="!isToggled(OptionalEnquiryTypeEnum.ServiceProvider)">
+    Bitte erteilen Sie mir auch Auskunft über Ihre Dienstleister.
+  </div>
+</div>
+</fieldset>
+</form>

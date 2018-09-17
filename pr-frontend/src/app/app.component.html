@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navigationbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" routerLink="/">
+				<i class="fas fa-paper-plane" aria-hidden="true"></i>
+				PrivacyRequests
+			</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="navigationbar" [ngbCollapse]="isCollapsed">
+			<ul class="nav navbar-nav">
+				<li [class.active]="isLinkActive('/')"><a routerLink="/">Ersuchen erstellen</a></li>
+				<li [class.active]="isLinkActive('/sendebericht')"><a routerLink="/sendebericht">Sendebericht abfragen</a></li>
+				<li [class.active]="isLinkActive('/statistiken')"><a routerLink="/statistiken">Statistiken</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<footer class="footer">
+	<div class="text-center">
+		<a href="{{environment.frontendUrl}}/impressum" target="_blank"> Impressum</a>
+		<a href="{{environment.frontendUrl}}/datenschutz" target="_blank"> Datenschutzerklärung</a>
+		<a href="{{environment.frontendUrl}}/hilfe" target="_blank"> Hilfe</a>
+		<a href="{{environment.frontendUrl}}/spenden" target="_blank"> Spenden</a>
+		<a href="{{environment.githubUrl}}" target="_blank"> Open-Source</a>
+	</div>
+</footer>

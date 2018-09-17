@@ -1,0 +1,43 @@
+<div class="container-fluid container-margin">
+	<div class="row">
+		<div class="success">
+			<div class="center">
+				<i class="fas fa-check-circle success-check"></i>
+			</div>
+			<div class="center success-text">Erfolgreich!</div>
+			<div class="center success-sub-text">Ihre E-Mail an <b>{{emailDeliveryReceipt.emailDetails.recipient_email || 'muster@firma.at'}}</b> wurde erfolgreich versandt.</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 col-md-10 center-block">
+			<div class="full-panel">
+				<div class="text">
+					Die Antwort des Empfänger-E-Mail-Servers wurde anonymisiert protokolliert. Sie können diese Antwort, inklusive weiterer Informationen, jederzeit mit Ihrer eindeutigen Passphrase abrufen. Diese Antwort des E-Mail Servers dient als Beweismittel für das Absenden der Email und den Empfang des Ersuchens durch <b>{{emailDeliveryReceipt.emailDetails.recipient_email || 'muster@firma.at'}}</b>. Mehr Informationen finden Sie in den Entscheidungen des Obersten Gerichtshofs <a target="_blank" href="http://www.ris.bka.gv.at/Dokument.wxe?Abfrage=Justiz&Dokumentnummer=JJR_20071129_OGH0002_0020OB00108_07G0000_001">2Ob108/07g</a> und <a target="_blank" href="http://www.ris.bka.gv.at/Dokument.wxe?Abfrage=Justiz&Dokumentnummer=JJR_20110531_OGH0002_0100OB00028_11G0000_001">10Ob28/11g</a>.
+				</div>
+				<br/>
+				<div>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+						<input class="form-control" type="text" placeholder="Passphrase" value="{{emailDeliveryReceipt.passphrase || ''}}">
+					</div>
+				</div>
+				<br/>
+				<div class="text">
+					Bitte speichern Sie Ihre Passphrase jetzt - nachdem diese Seite geschlossen wurde kann die Passphrase nicht mehr abgerufen werden.
+				</div>
+				<br/>
+				<div class="link-color" role="button" (click)="showEmailDetails=!showEmailDetails">E-Mail Details anzeigen 
+					<i class="fas" 
+					[ngClass]="showEmailDetails ? 'fa-caret-down' : 'fa-caret-up'"
+					aria-hidden="true"></i>
+				</div>
+				<div class="email-receipt well" [hidden]='!showEmailDetails'>
+					Sent-At: {{emailDeliveryReceipt.emailDetails.sent_at || ''}}<br/>
+					Delivered-To: {{emailDeliveryReceipt.emailDetails.recipient_email || ''}}<br/>
+					Server-Message: {{emailDeliveryReceipt.emailDetails.message || ''}}<br/>
+					Attachment-MD5: {{emailDeliveryReceipt.emailDetails.file_hash || ''}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

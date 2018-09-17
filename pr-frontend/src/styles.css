@@ -1,0 +1,10 @@
+@import '~ng-bootstrap-to-bootstrap-3/dist/ng-bootstrap-to-bootstrap-3.min.css'; 
+/* Fix for ng-bootstrap */
+@import '~flag-icon-css/css/flag-icon.min.css';
+
+body {
+	font-size: 12pt;
+	color: #2c3e50;
+	margin:0;
+	padding:0;
+}
