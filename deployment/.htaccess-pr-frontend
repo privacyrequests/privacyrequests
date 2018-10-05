@@ -1,0 +1,3 @@
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*) index.html [NC,L]
