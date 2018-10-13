@@ -43,12 +43,15 @@ bestimmten Ereignis.
 
 <div class="panel panel-default">
   <div class="panel-heading" role="button" (click)="toggleOptionalEnquiryTypeEnum(OptionalEnquiryTypeEnum.AutomatedDecisionMaking)">
-    <h3 class="panel-title">Automatisierte Entscheidungsfindung <i class="far fa-lg fa-pull-right fa-fw"
+    <h3 class="panel-title">
+      <span class="hidden-xs">Automatisierte</span>
+      <span class="visible-xs-inline-block">Autom.</span>
+      Entscheidungsfindung <i class="far fa-lg fa-pull-right fa-fw"
     [ngClass]="isToggled(OptionalEnquiryTypeEnum.AutomatedDecisionMaking) ? 'fa-check-square' : 'fa-square'"
     aria-hidden="true"></i></h3>
   </div>
   <div class="panel-body" *ngIf="isToggled(OptionalEnquiryTypeEnum.AutomatedDecisionMaking)">
-    Ich ersuche um Auskunft über den logischen Ablauf einer automatisierten Entscheidungsfindung (§ 49 Abs. 3 DSG 2000).
+    Ich ersuche um Auskunft über den logischen Ablauf einer automatisierten Entscheidungsfindung (§ 49 Abs. 3 DSG).
     <div class="form-group" [ngClass]="{'has-error': automatedDecisionMaking.errors && (automatedDecisionMaking.dirty || automatedDecisionMaking.touched)}">
       <!-- Workaround for ngModel until two way binding supports elvis operator -->
       <textarea [(ngModel)]="getOptionalEnquiryType(OptionalEnquiryTypeEnum.AutomatedDecisionMaking) && getOptionalEnquiryType(OptionalEnquiryTypeEnum.AutomatedDecisionMaking).additionalText" (ngModelChange)="updateDocument()" class="form-control margin-top-10" id="automatedDecisionMaking" name="automatedDecisionMaking" placeholder="z.B. Bonitätsprüfung" [required]="isToggled(OptionalEnquiryTypeEnum.AutomatedDecisionMaking)" #automatedDecisionMaking="ngModel"></textarea>

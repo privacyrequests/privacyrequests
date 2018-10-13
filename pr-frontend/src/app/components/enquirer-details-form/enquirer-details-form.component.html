@@ -50,7 +50,7 @@
     </div>
 
     <div class="form-group" [ngClass]="{'has-error': legal.errors && (legal.dirty || legal.touched)}">
-     <div class="col-sm-4 control-label hidden-xs">
+     <div class="col-sm-4 control-label float-left">
       <input [(ngModel)]="legalCheckbox" id="legalCheckbox" type="checkbox" class="form-check-input" name="legalCheckbox" [checked]="false" required #legal="ngModel">
     </div>
     <div class="col-sm-8">

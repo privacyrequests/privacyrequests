@@ -37,7 +37,7 @@ jobs:
     deploy:
       provider: script
       skip_cleanup: true
-      script: mv ../deployment/.htaccess-pr-frontend _site/.htaccess && rsync -r --quiet --delete-after dist/ $DEPLOY_USER@$DEPLOY_HOST:/var/www/virtual/$DEPLOY_USER/app.privacyrequests.org
+      script: mv ../deployment/.htaccess-pr-frontend dist/.htaccess && rsync -r --quiet --delete-after dist/ $DEPLOY_USER@$DEPLOY_HOST:/var/www/virtual/$DEPLOY_USER/app.privacyrequests.org
       on:
         branch: master
   - stage: backend

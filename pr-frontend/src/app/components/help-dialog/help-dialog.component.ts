@@ -3,7 +3,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { StepService } from '../../services/step.service';
 import { HelpEntry } from '../../models/help-entry';
 import { environment } from '../../../environments/environment';
-import * as StaticHelpText from '../../../assets/static/faq.de-AT.json';
+import StaticHelpText from '../../../assets/static/faq.de-AT.json';
 
 @Component({
   selector: 'help-dialog',

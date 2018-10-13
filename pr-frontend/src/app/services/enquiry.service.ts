@@ -3,7 +3,7 @@ import { Enquirer } from '../models/enquirer';
 import { EnquiryType } from '../models/enquiry-type';
 import { EnquiryTypeEnum } from '../enums/enquiry-type.enum';
 import { OptionalEnquiryTypeEnum } from '../enums/optional-enquiry-type.enum';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { Recipient } from '../models/recipient';
 import { Enquiry } from '../models/enquiry';
 import { Signature } from '../models/signature';

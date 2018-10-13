@@ -8,3 +8,7 @@
 .has-error label.show-error {
 	border-bottom: 2px solid red;
 }
+
+.float-left {
+	float: left;
+}
