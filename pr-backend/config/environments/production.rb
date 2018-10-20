@@ -56,7 +56,7 @@ Rails.application.configure do
   config.publicUrl = "https://api.privacyrequests.org"
 
   # The url of the external signature service handler
-  config.signatureHandlerUrl = "https://test1.a-trust.at/mobile/https-security-layer-request/default.aspx"
+  config.signatureHandlerUrl = "https://www.a-trust.at/mobile/https-security-layer-request/default.aspx"
 
   # The email address the user may reply to  
   config.reply_to_email = "hi@privacyrequests.org"
